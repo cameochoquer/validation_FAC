@@ -9,26 +9,37 @@
   </head>
   <body>
     <form>
-      <label for="name">name
+      <label for="name"
+        >name
         <span aria-hidden="must be filled in">*</span>
       </label>
-      <input id="name" required/>
+      <input id="name" required />
 
-      <label for="email">email
+      <label for="email"
+        >email
         <span aria-hidden="must be filled in">*</span>
       </label>
-      <input id="email" type="email" required/>
+      <input id="email" type="email" required />
 
-      <label for="website" >website</label>
+      <label for="website">website</label>
       <input id="website" type="url" />
 
       <label for="subject">subject</label>
       <input id="subject" />
 
-      <label for="message">message
+      <label for="message"
+        >message
         <span aria-hidden="must be filled in">*</span>
       </label>
-      <textarea id="message" rows="5" required></textarea>
+      <p id="textarea-limit">message has 140 character limit</p>
+
+      <textarea
+        id="message"
+        rows="5"
+        maxlength="140"
+        aria-describedby="textarea-limit"
+        required
+      ></textarea>
 
       <button>Submit</button>
     </form>
@@ -59,14 +70,14 @@
       label {
         text-transform: capitalize;
       }
-      [aria-invalid="true"] {
+      [aria-invalid='true'] {
         border-color: red;
       }
-      [aria-invalid="true"] + * {
+      [aria-invalid='true'] + * {
         color: red;
       }
-      [aria-invalid="true"] + *::before {
-        content: "⚠️ ";
+      [aria-invalid='true'] + *::before {
+        content: '⚠️ ';
       }
     </style>
   </body>
