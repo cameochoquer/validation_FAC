@@ -13,19 +13,19 @@
         >name
         <span aria-hidden="must be filled in">*</span>
       </label>
-      <input id="name" required />
+      <input id="name" aria-describedby="must be a name"required />
 
       <label for="email"
         >email
         <span aria-hidden="must be filled in">*</span>
       </label>
-      <input id="email" type="email" required />
+      <input id="email" type="email" aria-describedby="must be email" required />
 
       <label for="website">website</label>
-      <input id="website" type="url" />
+      <input id="website" type="url" aria-describedby="must be URL/swebsiteError"/>
 
       <label for="subject">subject</label>
-      <input id="subject" pattern= "^[a-z0-9 ]+$"/>
+      <input id="subject" pattern= "^[a-z0-9 ]+$" aria-describedby="must be lower-case"/>
 
       <label for="message"
         >message

@@ -1,5 +1,5 @@
 const form = document.querySelector('form')
-const fields = form.querySelectorAll('input')
+const fields = form.querySelectorAll('input, textarea')
 form.setAttribute('novalidate', '')
 
 form.addEventListener('submit', (event) => {
@@ -10,26 +10,31 @@ form.addEventListener('submit', (event) => {
 })
 
 fields.forEach((field) => {
-// set all fields to invalid at start
+  // set all fields to invalid at start
   field.setAttribute('aria-invalid', 'false')
-  field.addEventListener("invalid", () => {
-    field.setAttribute("aria-invalid", "true");
-  });
-  field.addEventListener("input", () => {
-    field.setAttribute("aria-invalid", "false");
-  });
+  field.addEventListener('invalid', () => {
+    field.setAttribute('aria-invalid', 'true')
+  })
+  field.addEventListener('input', () => {
+    field.setAttribute('aria-invalid', 'false')
+  })
 })
 
+fields.forEach((field) => {
+  const feedback = document.createElement('p')
+  const id = field.id + 'Error'
+  feedback.setAttribute('id', id)
+  const prevIds = field.getAttribute('aria-describedby')
+  const describedBy = prevIds + ' ' + id
+  field.setAttribute('aria-describedBy', describedBy)
+  field.after(feedback)
 
-// 
-// fields.forEach((field) => {
-//   field.setAttribute('aria-invalid', 'false')
-//   field.addEventListener('blur', () => {
-//       const isValid = field.checkValidity()
-//       if (isValid) {
-//           field.setAttribute('aria-invalid', 'false')
-//         }else{
-//             field.setAttribute('aria-invalid', 'true')
-//         }
-//     })
-// })
+  field.addEventListener('invalid', () => {
+    const message = field.validationMessage
+    feedback.textContent = message
+  })
+  field.addEventListener('input', () => {
+    field.setAttribute('aria-invalid', 'false')
+    feedback.textContent = ''
+  })
+})

@@ -13,7 +13,7 @@ test("Fields show feedback in the DOM when they fail validation", async () => {
   assert.equal(
     ids.length,
     2,
-    "#message field should have two IDs in `aria-describedby`"
+    `#message field should have two IDs in 'aria-describedby ${ids} + described by = ${describedBy}'`
   );
   const feedback = $("#" + ids[1]);
   assert.ok(
